@@ -4,9 +4,10 @@ require "../vendor/autoload.php";
 use Xjtuana\XjtuApi\Api\ApiPppoeLog;
 use GuzzleHttp\Psr7;
 
-$pppoe = new ApiPppoeLog([
-    'url' => 'API_URL',
-]);
+$config = require './config.php';
+
+$pppoe = new ApiPppoeLog($config['pppoelog']);
+
 echo $pppoe->getByUsername('PPPOE_USERNAME');
 
 
