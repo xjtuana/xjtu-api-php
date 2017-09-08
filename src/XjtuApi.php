@@ -1,6 +1,6 @@
 <?php
 
-namespace Xjtuana\XjtuApi;
+namespace Xjtuana\XjtuApi\Api;
 
 use GuzzleHttp\Client;
 

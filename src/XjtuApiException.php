@@ -1,5 +1,5 @@
 <?php
 
-namespace Xjtuana\XjtuApi;
+namespace Xjtuana\XjtuApi\Api;
 
 class XjtuApiException extends \Exception {}

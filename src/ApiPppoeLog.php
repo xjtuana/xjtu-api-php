@@ -2,7 +2,6 @@
 
 namespace Xjtuana\XjtuApi\Api;
 
-use Xjtuana\XjtuApi\XjtuApi;
 use GuzzleHttp\Exception\RequestException;
 
 /**

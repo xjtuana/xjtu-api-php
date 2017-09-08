@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Xjtuana\\XjtuApi\\": "src/"
+            "Xjtuana\\XjtuApi\\Api\\": "src/"
         }
     },
     "extra": {
