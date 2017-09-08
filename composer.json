@@ -1,0 +1,27 @@
+{
+    "name": "xjtuana/xjtu-api",
+    "description": "XJTU API package for PHP",
+    "keywords": ["xjtu", "api"],
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "meteorlxy",
+            "email": "meteor.lxy@foxmail.com",
+            "homepage": "https://www.meteorlxy.cn"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Xjtuana\\XjtuApi\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "v1.x-dev"
+        }
+    }
+}
