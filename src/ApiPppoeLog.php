@@ -34,12 +34,12 @@ class ApiPppoeLog extends XjtuApi {
      */
     public function getByUsername(string $username) {
         try {
-           $response = $this->http()->get( $this->url, [
+            $response = $this->http()->get( $this->url, [
                 'query' => [
                     'username' => $username
                 ]
             ] );
-            return $response->getBody();
+            return utf8_encode($response->getBody()->getContents());
         } catch(RequestException $e) {
             if ($e->hasResponse()) {
                 $response = $e->getResponse();
