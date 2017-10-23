@@ -36,9 +36,6 @@ abstract class XjtuApi {
      * @throws \Xjtuana\Ws\XjtuWebServiceException
      */
     public function __construct(string $url) {
-        if ( empty($url) ) {
-            throw new XjtuApiException('The url of '.__CLASS__.' api is required.');
-        }
         $this->url = $url;
     }
 
@@ -49,7 +46,9 @@ abstract class XjtuApi {
      */
     protected function http() {
         if (! $this->http instanceof Client) {
-            $this->http = new Client();
+            $this->http = new Client([
+                'base_uri' => $this->url,
+            ]);
         }
         return $this->http;
     }

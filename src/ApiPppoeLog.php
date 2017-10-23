@@ -34,7 +34,7 @@ class ApiPppoeLog extends XjtuApi {
      */
     public function getByUsername(string $username) {
         try {
-            $response = $this->http()->get( $this->url, [
+            $response = $this->http()->get( 'check_stu_pppoe_log.php', [
                 'query' => [
                     'username' => $username
                 ]
