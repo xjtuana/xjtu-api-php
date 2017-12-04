@@ -5,7 +5,7 @@ use Xjtuana\XjtuApi\Api\ApiSms;
 
 $config = require './config.php';
 
-$sms = new ApiSms($config['sms']);
+$sms = new ApiSms($config['sms']['url'], $config['sms']['config']);
 
 var_dump($sms->getChannels());
 echo "\n";

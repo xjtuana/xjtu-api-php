@@ -13,27 +13,6 @@ use GuzzleHttp\Psr7\Response;
  */
 class ApiSms extends XjtuApi {
     
-    protected $accountID;
-    
-    protected $accountKey;
-    
-    protected $channelIds;
-
-    /**
-     * 构造函数，传入config数组.
-     *
-     * @param  array    $config 
-     *
-     * @return void
-     * @throws \Xjtuana\Ws\WebService\XjtuWebServiceException
-     */
-    public function __construct(array $config) {
-        parent::__construct($config['url']);
-        $this->accountID = $config['accountID'];
-        $this->accountKey = $config['accountKey'];
-        $this->channelIds = $config['channelIds'];
-    }
-    
     protected function parseResponse(Response $response) {
         $result = json_decode($response->getBody()->getContents(), true);
         return $result;
@@ -42,8 +21,8 @@ class ApiSms extends XjtuApi {
     public function getChannels() {
         $response = $this->http()->get('get_channels', [
             'query' => [
-                'accountID' => $this->accountID,
-                'accountKey' => $this->accountKey,
+                'accountID' => $this->config['accountID'],
+                'accountKey' => $this->config['accountKey'],
             ],
         ]);
         return $this->parseResponse($response);
@@ -62,13 +41,13 @@ class ApiSms extends XjtuApi {
     public function send(array $targets, string $content, bool $isCron = false, string $sendtime = null) {
         
         $msgJson = [
-            'title' => 'titlea',
+            'title' => 'title',
             'content' => $content,
             'isCron' => $isCron ? 1 : 0,
             'sendtime' => $sendtime,
             'typecode' => '',
             'channels' => 'ydxy-mobile',
-            'channelIds' => $this->channelIds,
+            'channelIds' => $this->config['channelIds'],
             'intReceiver' => [],
             'extReceiver' => $targets,
             'ext' => null,
@@ -76,8 +55,8 @@ class ApiSms extends XjtuApi {
         
         $response = $this->http()->post('v1/sendmsg', [
             'form_params' => [
-                'accountID' => $this->accountID,
-                'accountKey' => $this->accountKey,
+                'accountID' => $this->config['accountID'],
+                'accountKey' => $this->config['accountKey'],
                 'msgJson' => json_encode($msgJson),
             ],
         ]);

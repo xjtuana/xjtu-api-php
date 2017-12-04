@@ -28,15 +28,34 @@ abstract class XjtuApi {
     protected $url;
 
     /**
+     * 该api的配置.
+     *
+     * @var array
+     */
+    protected $config;
+
+    /**
+     * GuzzleHttp Client options.
+     *
+     * @var array
+     */
+    protected $options = [
+        'timeout' => 5,
+    ];
+
+    /**
      * 构造函数，传入url.
      *
      * @param  string    $url 
+     * @param  array     $config
+     * @param  array     $options
      *
      * @return void
-     * @throws \Xjtuana\Ws\XjtuWebServiceException
      */
-    public function __construct(string $url) {
+    public function __construct(string $url, array $config = [], array $options = []) {
         $this->url = $url;
+        $this->config = $config;
+        $this->options = array_merge($this->options, $options);
     }
 
     /**
@@ -46,9 +65,13 @@ abstract class XjtuApi {
      */
     protected function http() {
         if (! $this->http instanceof Client) {
-            $this->http = new Client([
-                'base_uri' => $this->url,
-            ]);
+            $this->http = new Client(
+                array_merge([
+                    'base_uri' => $this->url,
+                ],
+                $this->options
+                )
+            );
         }
         return $this->http;
     }

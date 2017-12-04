@@ -14,18 +14,6 @@ use GuzzleHttp\Exception\RequestException;
 class ApiPppoeLog extends XjtuApi {
 
     /**
-     * 构造函数，传入config数组.
-     *
-     * @param  array    $config 
-     *
-     * @return void
-     * @throws \Xjtuana\Ws\WebService\XjtuWebServiceException
-     */
-    public function __construct(array $config) {
-        parent::__construct($config['url']);
-    }
-
-    /**
      * 根据用户名获取PPPOE日志.
      *
      * @param  string   $username     目标用户名，NETID/PPPOE账号
