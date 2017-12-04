@@ -11,7 +11,7 @@ PHP Client for XJTU API
 - 通过Composer引入包（[Packagist](https://packagist.org/packages/xjtuana/xjtu-api)）
 
 ```shell
-composer require xjtuana/xjtu-api ~1.1
+composer require xjtuana/xjtu-api ~1.2.0
 ```
 
 - 示例代码
@@ -21,9 +21,9 @@ PppoeLog:
 ```php
 use Xjtuana\XjtuApi\Api\ApiPppoeLog;
 
-$pppoe = new ApiPppoeLog([
-    'url' => 'API_URL',
-]);
+$pppoe = new ApiPppoeLog(
+    'API_URL'
+);
 echo $pppoe->getByUsername('PPPOE_USERNAME');
 ```
 
@@ -33,11 +33,13 @@ Sms:
 use Xjtuana\XjtuApi\Api\ApiSms;
 
 $sms = new ApiSms([
-  'url' => 'API_URL',
-  'accountID' => 'ACCOUNT_ID',
-  'accountKey' => 'ACCOUNT_KEY',
-  'channelIds' => 'CHANNEL_ID',
-]);
+    API_URL',
+    [
+        'accountID' => 'ACCOUNT_ID',
+        'accountKey' => 'ACCOUNT_KEY',
+        'channelIds' => 'CHANNEL_ID',
+    ]
+);
 
 var_dump($sms->getChannels());
 echo "\n";
