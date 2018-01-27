@@ -41,6 +41,7 @@ abstract class XjtuApi {
      */
     protected $options = [
         'timeout' => 5,
+        'connect_timeout' => 5,
     ];
 
     /**
