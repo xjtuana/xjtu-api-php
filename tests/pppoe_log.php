@@ -1,9 +1,9 @@
 <?php
-require "../vendor/autoload.php";
+require __DIR__ . '/../vendor/autoload.php';
 
 use Xjtuana\XjtuApi\Api\ApiPppoeLog;
 
-$config = require './config.php';
+$config = require __DIR__ . '/config.php';
 
 $pppoe = new ApiPppoeLog($config['pppoelog']['url']);
 
