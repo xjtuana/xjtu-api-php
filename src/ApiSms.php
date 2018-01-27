@@ -13,11 +13,11 @@ use GuzzleHttp\Psr7\Response;
  */
 class ApiSms extends XjtuApi {
     
-    protected function parseResponse(Response $response) {
-        $result = json_decode($response->getBody()->getContents(), true);
-        return $result;
-    }
-    
+    /**
+     * 获取短信发送渠道
+     *
+     * @return array
+     */
     public function getChannels() {
         $response = $this->http()->get('get_channels', [
             'query' => [
@@ -29,7 +29,7 @@ class ApiSms extends XjtuApi {
     }
 
     /**
-     * 根据手机号发送短信.
+     * 根据手机号发送短信
      *
      * @param  array    $targets     目标手机号数组
      * @param  string   $content     短信内容
@@ -63,5 +63,16 @@ class ApiSms extends XjtuApi {
         
         return $this->parseResponse($response);
     }
-
+    
+    /**
+     * 解析服务器响应
+     * 
+     * @param  \GuzzleHttp\Psr7\Response $response
+     * 
+     * @return mixed
+     **/
+    protected function parseResponse(Response $response) {
+        $result = json_decode($response->getBody()->getContents(), true);
+        return $result;
+    }
 }
