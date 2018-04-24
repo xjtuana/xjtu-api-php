@@ -22,12 +22,12 @@ class ApiPppoeLog extends XjtuApi {
      */
     public function getByUsername(string $username) {
         try {
-            $response = $this->http()->get( 'check_stu_pppoe_log.php', [
+            $response = $this->http()->get('check_stu_pppoe_log_utf8.php', [
                 'query' => [
                     'username' => $username
                 ]
             ] );
-            return utf8_encode($response->getBody()->getContents());
+            return $response->getBody()->getContents();
         } catch(RequestException $e) {
             if ($e->hasResponse()) {
                 $response = $e->getResponse();
