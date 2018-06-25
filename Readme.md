@@ -3,7 +3,7 @@
 PHP Client for XJTU API
 
 目前支持：
-- ApiPppoeLog 用户PPPOE日志接口
+- ApiNetworkLog 用户网络日志接口
 - ApiSms 统一消息协作平台（短信接口）
 
 ## Usage 使用方法
@@ -11,20 +11,21 @@ PHP Client for XJTU API
 - 通过Composer引入包（[Packagist](https://packagist.org/packages/xjtuana/xjtu-api)）
 
 ```shell
-composer require xjtuana/xjtu-api ~1.2.0
+composer require xjtuana/xjtu-api ~2.0.0
 ```
 
 - 示例代码
 
-PppoeLog:
+NetworkLog:
 
 ```php
-use Xjtuana\XjtuApi\Api\ApiPppoeLog;
+use Xjtuana\XjtuApi\Api\ApiNetworkLog;
 
-$pppoe = new ApiPppoeLog(
+$networklog = new ApiNetworkLog(
     'API_URL'
 );
-echo $pppoe->getByUsername('PPPOE_USERNAME');
+echo $networklog->getStuByUsername('PPPOE_USERNAME');
+echo $networklog->getWenetByUsername('PPPOE_USERNAME');
 ```
 
 Sms:
@@ -50,9 +51,15 @@ echo "\n";
 
 ## API
 
-### ApiPppoeLog
+### ApiNetworkLog
 
-- `getByUsername()` 通过PPPOE用户名/NETID获取日志
+- `getStuByUsername()` 通过PPPOE用户名/NETID获取Stu日志
+
+    - 参数：`string` 查询的PPPOE用户名/NETID
+
+    - 返回值：`string` 日志
+
+- `getWenetByUsername()` 通过PPPOE用户名/NETID获取Wenet日志
 
     - 参数：`string` 查询的PPPOE用户名/NETID
 

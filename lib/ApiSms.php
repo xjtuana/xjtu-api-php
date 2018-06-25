@@ -2,8 +2,6 @@
 
 namespace Xjtuana\XjtuApi\Api;
 
-use GuzzleHttp\Psr7\Response;
-
 /**
  * Class ApiSms.
  * 短信平台接口
@@ -62,17 +60,5 @@ class ApiSms extends XjtuApi {
         ]);
         
         return $this->parseResponse($response);
-    }
-    
-    /**
-     * 解析服务器响应
-     * 
-     * @param  \GuzzleHttp\Psr7\Response $response
-     * 
-     * @return mixed
-     **/
-    protected function parseResponse(Response $response) {
-        $result = json_decode($response->getBody()->getContents(), true);
-        return $result;
     }
 }

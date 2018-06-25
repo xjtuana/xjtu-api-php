@@ -3,6 +3,7 @@
 namespace Xjtuana\XjtuApi\Api;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Response;
 
 /**
  * Class XjtuApi.
@@ -75,5 +76,17 @@ abstract class XjtuApi {
             );
         }
         return $this->http;
+    }
+    
+    /**
+     * 解析服务器响应
+     * 
+     * @param  \GuzzleHttp\Psr7\Response $response
+     * 
+     * @return mixed
+     **/
+    protected function parseResponse(Response $response) {
+        $result = json_decode($response->getBody()->getContents(), true);
+        return $result;
     }
 }
