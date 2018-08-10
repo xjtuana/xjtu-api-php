@@ -66,15 +66,16 @@ abstract class XjtuApi {
      * @return \GuzzleHttp\Client
      */
     protected function http() {
-        if (! $this->http instanceof Client) {
+        // 若$this->http不是\GuzzleHttp\Client实例，则创建一个
+        if (!$this->http instanceof Client) {
             $this->http = new Client(
-                array_merge([
-                    'base_uri' => $this->url,
-                ],
-                $this->options
+                array_merge(
+                    [ 'base_uri' => $this->url ],
+                    $this->options
                 )
             );
         }
+
         return $this->http;
     }
     
@@ -85,8 +86,15 @@ abstract class XjtuApi {
      * 
      * @return mixed
      **/
-    protected function parseResponse(Response $response) {
-        $result = json_decode($response->getBody()->getContents(), true);
+    protected function parseResponse(Response $response, bool $json = false) {
+        // 获取响应body
+        $result = $response->getBody()->getContents();
+
+        // 是否需要解析json
+        if ($json) {
+            $result = json_decode($result, true);
+        }
+
         return $result;
     }
 }

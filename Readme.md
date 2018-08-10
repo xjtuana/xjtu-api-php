@@ -53,17 +53,23 @@ echo "\n";
 
 ### ApiNetworkLog
 
-- `getStuByUsername()` 通过PPPOE用户名/NETID获取Stu日志
+- `getStuPppoeByUsername()` 通过用户名/NETID获取Stu PPPOE日志
 
-    - 参数：`string` 查询的PPPOE用户名/NETID
+    - 参数：`string` 查询的用户名/NETID
+
+    - 返回值：`string` 日志
+
+- `getStuWlanByUsername()` 通过用户名/NETID获取Stu WLAN日志
+
+    - 参数：`string` 查询的用户名/NETID
 
     - 返回值：`string` 日志
 
-- `getWenetByUsername()` 通过PPPOE用户名/NETID获取Wenet日志
+- `getWenetPppoeByUsername()` 通过用户名/NETID获取Wenet PPPOE日志
 
-    - 参数：`string` 查询的PPPOE用户名/NETID
+    - 参数：`string` 查询的用户名/NETID
 
-    - 返回值：`string` 日志
+    - 返回值：`array` 日志数组
 
 ### ApiSms
 

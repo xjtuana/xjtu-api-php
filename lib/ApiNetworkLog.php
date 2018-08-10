@@ -20,9 +20,33 @@ class ApiNetworkLog extends XjtuApi {
      *
      * @return string
      */
-    public function getStuByUsername(string $username) {
+    public function getStuPppoeByUsername(string $username) {
         try {
             $response = $this->http()->get('check_stu_pppoe_log_utf8.php', [
+                'query' => [
+                    'username' => $username
+                ]
+            ]);
+            return $response->getBody()->getContents();
+        } catch(RequestException $e) {
+            if ($e->hasResponse()) {
+                $response = $e->getResponse();
+                return $response->getStatusCode() . ' ' . $response->getReasonPhrase();
+            }
+            return 'Exception: ' . $e->getCode();
+        }
+    }
+
+    /**
+     * 根据用户名获取WLAN日志.
+     *
+     * @param  string   $username     目标用户名，WLAN账号
+     *
+     * @return string
+     */
+    public function getStuWlanByUsername(string $username) {
+        try {
+            $response = $this->http()->get('check_stu_wlan_log_utf8.php', [
                 'query' => [
                     'username' => $username
                 ]
@@ -42,9 +66,9 @@ class ApiNetworkLog extends XjtuApi {
      *
      * @param  string   $username     目标用户名，WENET账号
      *
-     * @return string
+     * @return array
      */
-    public function getWenetByUsername(string $username) {
+    public function getWenetPppoeByUsername(string $username) {
         try {
             $response = $this->http()->get('check_wenet_pppoe_log.php', [
                 'query' => [
@@ -52,30 +76,6 @@ class ApiNetworkLog extends XjtuApi {
                 ]
             ]);
             return $this->parseResponse($response);
-        } catch(RequestException $e) {
-            if ($e->hasResponse()) {
-                $response = $e->getResponse();
-                return $response->getStatusCode() . ' ' . $response->getReasonPhrase();
-            }
-            return 'Exception: ' . $e->getCode();
-        }
-    }
-
-    /**
-     * 根据用户名获取WLAN日志.
-     *
-     * @param  string   $username     目标用户名，WLAN账号
-     *
-     * @return string
-     */
-    public function getWlanByUsername(string $username) {
-        try {
-            $response = $this->http()->get('check_stu_wlan_log_utf8.php', [
-                'query' => [
-                    'username' => $username
-                ]
-            ]);
-            return $response->getBody()->getContents();
         } catch(RequestException $e) {
             if ($e->hasResponse()) {
                 $response = $e->getResponse();
