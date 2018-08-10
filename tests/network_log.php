@@ -5,10 +5,14 @@ use Xjtuana\XjtuApi\Api\ApiNetworkLog;
 
 $config = require __DIR__ . '/config.php';
 
-$pppoe = new ApiNetworkLog($config['network_log']['url']);
+$networklog = new ApiNetworkLog($config['network_log']['url']);
 
-var_dump($pppoe->getStuByUsername('USERNAME'));
+var_dump($networklog->getStuByUsername('USERNAME'));
 echo "\n";
 
-var_dump($pppoe->getWenetByUsername('USERNAME'));
+var_dump($networklog->getWenetByUsername('USERNAME'));
 echo "\n";
+
+var_dump($networklog->getWlanByUsername('USERNAME'));
+echo "\n";
+

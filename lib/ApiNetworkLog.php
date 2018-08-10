@@ -26,7 +26,7 @@ class ApiNetworkLog extends XjtuApi {
                 'query' => [
                     'username' => $username
                 ]
-            ] );
+            ]);
             return $response->getBody()->getContents();
         } catch(RequestException $e) {
             if ($e->hasResponse()) {
@@ -50,8 +50,32 @@ class ApiNetworkLog extends XjtuApi {
                 'query' => [
                     'account' => $username
                 ]
-            ] );
+            ]);
             return $this->parseResponse($response);
+        } catch(RequestException $e) {
+            if ($e->hasResponse()) {
+                $response = $e->getResponse();
+                return $response->getStatusCode() . ' ' . $response->getReasonPhrase();
+            }
+            return 'Exception: ' . $e->getCode();
+        }
+    }
+
+    /**
+     * 根据用户名获取WLAN日志.
+     *
+     * @param  string   $username     目标用户名，WLAN账号
+     *
+     * @return string
+     */
+    public function getWlanByUsername(string $username) {
+        try {
+            $response = $this->http()->get('check_stu_wlan_log_utf8.php', [
+                'query' => [
+                    'username' => $username
+                ]
+            ]);
+            return $response->getBody()->getContents();
         } catch(RequestException $e) {
             if ($e->hasResponse()) {
                 $response = $e->getResponse();
