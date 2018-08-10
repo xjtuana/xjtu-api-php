@@ -27,7 +27,7 @@ class ApiNetworkLog extends XjtuApi {
                     'username' => $username
                 ]
             ]);
-            return $response->getBody()->getContents();
+            return $this->parseResponse($response);
         } catch(RequestException $e) {
             if ($e->hasResponse()) {
                 $response = $e->getResponse();
@@ -51,7 +51,7 @@ class ApiNetworkLog extends XjtuApi {
                     'username' => $username
                 ]
             ]);
-            return $response->getBody()->getContents();
+            return $this->parseResponse($response);
         } catch(RequestException $e) {
             if ($e->hasResponse()) {
                 $response = $e->getResponse();
@@ -75,7 +75,7 @@ class ApiNetworkLog extends XjtuApi {
                     'account' => $username
                 ]
             ]);
-            return $this->parseResponse($response);
+            return $this->parseResponse($response, true);
         } catch(RequestException $e) {
             if ($e->hasResponse()) {
                 $response = $e->getResponse();
