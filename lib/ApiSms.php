@@ -23,7 +23,7 @@ class ApiSms extends XjtuApi {
                 'accountKey' => $this->config['accountKey'],
             ],
         ]);
-        return $this->parseResponse($response);
+        return $this->parseResponse($response, true);
     }
 
     /**
@@ -59,6 +59,6 @@ class ApiSms extends XjtuApi {
             ],
         ]);
         
-        return $this->parseResponse($response);
+        return $this->parseResponse($response, true);
     }
 }
